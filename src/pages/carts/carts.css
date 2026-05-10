@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 html {
-    font-size: 16px;
+    font-size: 6px;
 }
 body {
     font-size: 2.6rem;
@@ -48,35 +48,17 @@ nav ul {
 }
 
 @media screen and (width>=576px) {
-    html {
-        font-size: 18px;
-    }
 }
 
 /*  My phone landscape  */
 @media screen and (width>=768px) {
-    html {
-        font-size: 8px;
-    }
 }
 /*  My phone portrait  */
 @media screen and (orientation: portrait) and (width>=768px) {
-    html {
-        font-size: 16px;
-    }
 }
 /* usually tablets*/
 @media screen and (width>=992px) {
-    html {
-        font-size: 7px;
-    }
 }
 /*  My laptop  */
 @media screen and (width>=1200px) {
-    html {
-        font-size: 6px;
-    }
-    #backgroundColor {
-        background: linear-gradient(to right, #d7d7ff, #7474ff);
-    }
 }
