@@ -1,7 +1,11 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const {getUserByName, createUser} = require("../models/apiDatabaseUserModels");
+const {
+    getUserByName, 
+    createUser,
+    updateUserProfile
+} = require("../models/apiDatabaseUserModels");
 
 const JWT_KEY = process.env.JWT_KEY;
 
@@ -10,7 +14,7 @@ function generateToken(res, user) {
         {
             id: user.id,
             name: user.name,
-            phoneNumber: user.phome_number,
+            phone_number: user.phone_number,
             email: user.email,
             gender: user.gender,
             birthday: user.birthday
@@ -63,16 +67,50 @@ function apiLogout(req, res, next) {
 }
 function apiAccountInformations(req, res, next) {
     const info = req.user;
+    const dataFinal = {
+        name: info.name,
+        email: info.email,
+        phone_number: info.phone_number,
+        gender: info.gender,
+        birthday: info.birthday
+    };
     res.status(200).json({
         status: 200,
         message: "Success",
-        data: info
+        data: dataFinal
     });
+}
+async function apiUpdateProfile(req, res, next) {
+    const currentUser = req.user.name;
+    const {
+        name,
+        phone_number,
+        email,
+        gender,
+        birthday
+    } = req.body;
+    try {
+        const result = getUserByName(currentUser);
+        if(result.length === 0) return res.status(404).json({
+            status: 404,
+            message: "User doesnt exists.",
+            data: null
+        });
+
+        const user = await updateUserProfile(name, phone_number, email, gender, birthday);
+        generateToken(res, user[0]);
+        res.status(200).json({
+            status: 200,
+            message: "Update successfully.",
+            data: user[0]
+        });
+    } catch(err) {}
 }
 
 module.exports = {
     apiLogin,
     apiSignup,
     apiLogout,
-    apiAccountInformations
+    apiAccountInformations,
+    apiUpdateProfile
 };
