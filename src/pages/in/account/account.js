@@ -74,3 +74,15 @@ async function saveProfile() {
         console.log(`Error: ${err}`);
     }
 }
+
+let isShown = false;
+function menuBtnClicked() {
+    const accountMenu = document.getElementById("profileBox");
+    if(isShown) {
+        accountMenu.style.transform = "translate(-220px)";
+        isShown = !isShown;
+    } else {
+        accountMenu.style.transform = "translate(0px)";
+        isShown = !isShown;
+    }
+}
