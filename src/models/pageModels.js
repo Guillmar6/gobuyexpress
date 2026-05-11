@@ -7,16 +7,12 @@ function loginPageService() {
     const css = fs.readFileSync(path.join(__dirname, '../pages/login.css'));
     return { page, script, css };
 }
-function homePageService(reqPage, reqIndex = null) {
-    if(reqIndex == null) {
-        const page = fs.readFileSync(path.join(__dirname, `../pages/${reqPage}`));
-        return { page };
-    }
-    const page = fs.readFileSync(path.join(__dirname, `../pages/${reqPage}/${reqIndex}`));
+function pagesService(reqPage) {
+    const page = fs.readFileSync(path.join(__dirname, `../pages/${reqPage}`));
     return { page };
 }
 
 module.exports = {
     loginPageService,
-    homePageService
+    pagesService
 };

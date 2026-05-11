@@ -9,6 +9,7 @@ const {authenticateTokenRun} = require("./middleware/authenticateToken");
 const pageRouter = require("./routes/pageRoutes");
 const apiRouter = require("./routes/apiRoutes");
 const assetsRouter = require("./routes/assetsRoutes");
+const { pages } = require('./controllers/pageControllers');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(authenticateTokenRun);
 app.use(pageRouter);
 app.use('/api', assetsRouter);
 app.use('/api', apiRouter);
+app.use(pages);
 app.use(errorHandler);
 
 app.listen(port, () => {
