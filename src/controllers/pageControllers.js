@@ -18,13 +18,13 @@ function homePage(req, res, next) {
     if(req.params.index == null) {
         const reqPage = req.params.page;
         const { page} = homePageService(reqPage);
-        res.status(200).end(`${page}`);
+        res.status(200).end(page);
         return;
     }
     const reqPage = req.params.page;
     const reqIndex = req.params.index;
     const { page} = homePageService(reqPage, reqIndex);
-    res.status(200).end(`${page}`);
+    res.status(200).end(page);
 }
 
 module.exports = {
