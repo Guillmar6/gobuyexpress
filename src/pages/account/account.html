@@ -24,7 +24,7 @@
           </div>
           <hr>
           <div id="infosMenu">
-            <form action="" method="put">
+            <form id="profileInfos">
               <div id="container">
                 <div class="labelBox" id="usernameBox">
                   <label class="labelChilds" for="username">Username</label>
@@ -39,7 +39,7 @@
                   <input class="inputChilds" type="tel" name="phone_number" id="phone_number" required>
                 </div>
                 <div class="labelBox" id="gender">
-                  <label class="labelChilds" for="">Gender</label>
+                  <label class="labelChilds">Gender</label>
                   <label class="genderLabels"><input type="radio" name="gender" id="gender" value="male">Male</label>
                   <label class="genderLabels"><input type="radio" name="gender" id="gender" value="female">Female</label>
                 </div>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="labelBox">
                   <div class="labelChilds"></div>
-                  <input id="saveBtn" type="submit" value="Save">
+                  <input id="saveBtn" onclick="saveProfile()" type="button" value="Save">
                 </div>
               </div>
               <div></div>
