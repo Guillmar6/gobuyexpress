@@ -1,3 +1,10 @@
+const navigationBar = document.getElementById("navigationbar");
+fetch("/in/components/navigationBar.html")
+.then(response => response.text())
+.then(data => {
+    navigationBar.innerHTML = data;
+});
+
 const menuOne = document.getElementById("menuOne");
 const menuTwo = document.getElementById("menuTwo");
 const menuThree = document.getElementById("menuThree");
@@ -31,46 +38,4 @@ async function loadNavigation() {
 
 function logout() {
     window.location.href = "/api/logout";
-}
-
-currentProfile();
-async function currentProfile() {
-    const current = await fetch("/api/accountInformations");
-    const result = await current.json();
-    document.getElementById("username").value = result.data.name;
-    document.getElementById("email").value = result.data.email;
-    document.getElementById("phone_number").value = result.data.phone_number;
-    document.getElementById("birthday").value = result.data.birthday;
-
-    const gender = document.querySelectorAll("input[name='gender']");
-    gender.forEach(radio => {
-        if(radio.value === result.data.gender) {
-            radio.checked = true;
-        }
-    });
-}
-async function saveProfile() {
-    const form = document.getElementById("profileInfos");
-    const formData = new FormData(form);
-    const data = {
-        name: formData.get("username"),
-        email: formData.get("email"),
-        phone_number: formData.get("phone_number"),
-        gender: formData.get("gender"),
-        birthday: formData.get("birthday")
-    };
-    try {
-        const response = await fetch("/api/updateProfile", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-        const result = await response.json();
-        if(response.ok) alert("Save successfully!");
-        else console.log(`Error: ${result.data}`);
-    } catch(err) {
-        console.log(`Error: ${err}`);
-    }
 }
