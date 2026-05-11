@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="/in/home/home.css">
 </head>
 <body>
   <div id="backgroundColor"></div>
@@ -14,70 +13,7 @@
   
   <script src="home.js"></script>
   <style>
-    *,
-    *::before,
-    *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    html {
-        font-size: 6px;
-    }
-    body {
-        font-size: 2.6rem;
-    }
-    #backgroundColor {
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        z-index: -5;
-        background: linear-gradient(to right, #d7d7ff, #9292ff);
-    }
-    nav {
-        width: 100vw;
-        height: 10rem;
-        background-color: #afccec;
-        display: flex;
-        align-items: center;
-    }
-    nav h1 {
-        font-weight: bold;
-        font-family: Arial, serif;
-        left: 1rem;
-        margin-left: clamp(2rem, 5vw, 20rem);
-    }
-    nav ul {
-        right: 1rem;
-        width: clamp(30rem, 40vw + 1rem, 50rem);
-        list-style: none;
-        display: flex;
-        justify-content: space-evenly;
-        margin-left: auto;
-    }
-    .listCompo {
-        width: 5rem;
-        text-align: center;
-    }
-    .listCompo svg {
-        width: 5rem;
-    }
-
-    @media screen and (width>=576px) {
-    }
-
-    /*  My phone landscape  */
-    @media screen and (width>=768px) {
-    }
-    /*  My phone portrait  */
-    @media screen and (orientation: portrait) and (width>=768px) {
-    }
-    /* usually tablets*/
-    @media screen and (width>=992px) {
-    }
-    /*  My laptop  */
-    @media screen and (width>=1200px) {
-    }
+    @import url("home.css");
   </style>
 </body>
 </html>
