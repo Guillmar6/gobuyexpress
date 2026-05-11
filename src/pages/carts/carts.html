@@ -33,27 +33,28 @@ body {
     z-index: -5;
     background: linear-gradient(to right, #d7d7ff, #9292ff);
 }
-nav {
-    width: 100vw;
-    height: 10rem;
-    background-color: #afccec;
-    display: flex;
-    align-items: center;
-}
-nav h1 {
-    font-weight: bold;
-    font-family: Arial, serif;
-    left: 1rem;
-    margin-left: clamp(2rem, 5vw, 20rem);
-}
-nav ul {
-    right: 1rem;
-    width: clamp(30rem, 40vw + 1rem, 50rem);
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
-    margin-left: auto;
-}
+    #navigationBar {
+        position: absolute;
+        width: 100vw;
+        height: 70px;
+        background-color: #afccec;
+        display: flex;
+        align-items: center;
+    }
+    #navigationBar h1 {
+        font-weight: bold;
+        font-family: Arial, serif;
+        left: 1rem;
+        margin-left: clamp(2rem, 7vw, 20rem);
+    }
+    #navigationBar ul {
+        right: 1rem;
+        width: clamp(30rem, 40vw, 60rem);
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        margin-left: auto;
+    }
 .listCompo {
     width: 5rem;
     text-align: center;

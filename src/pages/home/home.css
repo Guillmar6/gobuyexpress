@@ -5,6 +5,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+html, body {
+    width: 100vw;
+    height: 100vh;
+}
 html {
     font-size: 6px;
 }
@@ -18,22 +22,23 @@ body {
     z-index: -5;
     background: linear-gradient(to right, #d7d7ff, #9292ff);
 }
-nav {
+#navigationBar {
+    position: absolute;
     width: 100vw;
-    height: 10rem;
+    height: 70px;
     background-color: #afccec;
     display: flex;
     align-items: center;
 }
-nav h1 {
+#navigationBar h1 {
     font-weight: bold;
     font-family: Arial, serif;
     left: 1rem;
-    margin-left: clamp(2rem, 5vw, 20rem);
+    margin-left: clamp(2rem, 7vw, 20rem);
 }
-nav ul {
+#navigationBar ul {
     right: 1rem;
-    width: clamp(30rem, 40vw + 1rem, 50rem);
+    width: clamp(30rem, 40vw, 60rem);
     list-style: none;
     display: flex;
     justify-content: space-evenly;
