@@ -3,7 +3,6 @@ const {
     apiLogin,
     apiLogout,
     apiSignup,
-    apiAssetsGetIcon,
     apiAccountInformations
 } = require("../controllers/apiControllers");
 

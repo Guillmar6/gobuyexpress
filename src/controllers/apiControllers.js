@@ -9,7 +9,11 @@ function generateToken(res, user) {
     const token = jwt.sign(
         {
             id: user.id,
-            name: user.name
+            name: user.name,
+            phoneNumber: user.phome_number,
+            email: user.email,
+            gender: user.gender,
+            birthday: user.birthday
         },
         JWT_KEY,
         {

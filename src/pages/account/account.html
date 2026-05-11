@@ -11,7 +11,75 @@
   <nav id="navigationBar"></nav>
   
   <div id="outerProfileBox">
-    <div id="profileBox"></div>
+    <div id="profileBox">
+      <a href="#profile">Profile</a>
+      <a href="#addresses">Addresses</a>
+      <a href="#change_password">Change Password</a>
+    </div>
+    <div id="outerMenu">
+      <div class="menus one" id="menuOne" hidden>
+        <div id="profileMenu">
+          <div id="displayMenu">
+            <h1>Profile</h1>
+          </div>
+          <hr>
+          <div id="infosMenu">
+            <form action="" method="put">
+              <div id="container">
+                <div class="labelBox" id="usernameBox">
+                  <label class="labelChilds" for="username">Username</label>
+                  <input class="inputChilds" type="text" name="username" id="username" required>
+                </div>
+                <div class="labelBox" id="emailBox">
+                  <label class="labelChilds" for="email">Email</label>
+                  <input class="inputChilds" type="email" name="email" id="email" required>
+                </div>
+                <div class="labelBox" id="phone_numberBox">
+                  <label class="labelChilds" for="phone_number">Phone number</label>
+                  <input class="inputChilds" type="tel" name="phone_number" id="phone_number" required>
+                </div>
+                <div class="labelBox" id="gender">
+                  <label class="labelChilds" for="">Gender</label>
+                  <label class="genderLabels"><input type="radio" name="gender" id="gender" value="male">Male</label>
+                  <label class="genderLabels"><input type="radio" name="gender" id="gender" value="female">Female</label>
+                </div>
+                <div class="labelBox" id="birthdayBox">
+                  <label class="labelChilds" for="birthday">Birthday</label>
+                  <input class="inputChilds" type="date" name="birthday" id="birthday" required>
+                </div>
+                <div class="labelBox">
+                  <div class="labelChilds"></div>
+                  <input id="saveBtn" type="submit" value="Save">
+                </div>
+              </div>
+              <div></div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="menus two" id="menuTwo" hidden>
+        <div id="profileMenu">
+          <div id="displayMenu">
+            <h1>Addresses</h1>
+          </div>
+          <hr>
+          <div id="infosMenu">
+            <form action="" method="post"></form>
+          </div>
+        </div>
+      </div>
+
+      <div class="menus three" id="menuThree" hidden>
+        <div id="profileMenu">
+          <div id="displayMenu">
+            <h1>Change Password</h1>
+          </div>
+          <hr>
+          <div id="infosMenu"></div>
+        </div>
+      </div>
+    </div>
   </div>
   <button onclick="logout()" id="logoutBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M224 160C241.7 160 256 145.7 256 128C256 110.3 241.7 96 224 96L160 96C107 96 64 139 64 192L64 448C64 501 107 544 160 544L224 544C241.7 544 256 529.7 256 512C256 494.3 241.7 480 224 480L160 480C142.3 480 128 465.7 128 448L128 192C128 174.3 142.3 160 160 160L224 160zM566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L438.6 169.3C426.1 156.8 405.8 156.8 393.3 169.3C380.8 181.8 380.8 202.1 393.3 214.6L466.7 288L256 288C238.3 288 224 302.3 224 320C224 337.7 238.3 352 256 352L466.7 352L393.3 425.4C380.8 437.9 380.8 458.2 393.3 470.7C405.8 483.2 426.1 483.2 438.6 470.7L566.6 342.7z"/></svg>
     <p>Logout</p></button>
