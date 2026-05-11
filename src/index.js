@@ -12,7 +12,7 @@ const assetsRouter = require("./routes/assetsRoutes");
 
 const app = express();
 
-//const port = process.env.PORT;
+const port = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
@@ -27,8 +27,6 @@ app.use('/api', assetsRouter);
 app.use('/api', apiRouter);
 app.use(errorHandler);
 
-app.listen(
-    //port, 
-    () => {
+app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
