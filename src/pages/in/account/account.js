@@ -1,6 +1,15 @@
-const menuOne = document.getElementById("menuOne");
-const menuTwo = document.getElementById("menuTwo");
-const menuThree = document.getElementById("menuThree");
+const infosMenu = document.getElementById("profilePageChild");
+menuPages();
+async function menuPages() {
+    const response = await fetch("menus/profile.html");
+    const html = await response.text();
+
+    infosMenu.innerHTML = html;
+}
+const menuOne = document.getElementById("profilePageChild");
+const menuTwo = document.getElementById("addressesPageChild");
+const menuThree = document.getElementById("change_passwordPageChild");
+const displayCurrentPage = document.getElementById("displayCurrentPage");
 window.addEventListener("hashchange", hashCHanged);
 hashCHanged();
 function hashCHanged() {
@@ -9,14 +18,17 @@ function hashCHanged() {
         menuOne.style.display = "block";
         menuTwo.style.display = "none";
         menuThree.style.display = "none";
+        displayCurrentPage.innerText = "Profile";
     } else if(hash === "#addresses") {
         menuOne.style.display = "none";
         menuTwo.style.display = "block";
         menuThree.style.display = "none";
+        displayCurrentPage.innerText = "Addresses";
     } else if(hash === "#change_password") {
         menuOne.style.display = "none";
         menuTwo.style.display = "none";
         menuThree.style.display = "block";
+        displayCurrentPage.innerText = "Change Password";
     }
 }
 

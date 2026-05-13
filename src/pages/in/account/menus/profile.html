@@ -1,0 +1,85 @@
+<form id="profileInfos">
+  <div id="containerBox">
+    <div class="labelBox" id="usernameBox">
+      <label class="labelChilds" for="username">Username</label>
+      <input class="inputChilds" type="text" name="username" id="username" required />
+    </div>
+    <div class="labelBox" id="emailBox">
+      <label class="labelChilds" for="email">Email</label>
+      <input class="inputChilds" type="email" name="email" id="email" required />
+    </div>
+    <div class="labelBox" id="phone_numberBox">
+      <label class="labelChilds" for="phone_number">No.</label>
+      <input class="inputChilds" type="tel" name="phone_number" id="phone_number" required />
+    </div>
+    <div class="labelBox" id="gender">
+      <label class="labelChilds">Gender</label>
+      <label class="genderLabels"><input type="radio" name="gender" id="gender" value="male" />Male</label>
+      <label class="genderLabels"><input type="radio" name="gender" id="gender" value="female" />Female</label>
+    </div>
+    <div class="labelBox" id="birthdayBox">
+      <label class="labelChilds" for="birthday">Birthday</label>
+      <input class="inputChilds" type="date" name="birthday" id="birthday" required />
+    </div>
+    <div class="labelBox">
+      <div class="labelChilds"></div>
+      <input id="saveBtn" onclick="saveProfile()" type="button" value="Save" />
+    </div>
+  </div>
+  <div></div>
+</form>
+<style>
+  #profileInfos {
+    width: 90%;
+    height: 100%;
+    justify-self: center;
+  }
+
+  #containerBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .labelBox {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .labelBox .labelChilds {
+    height: 100%;
+    width: clamp(60px, 25vw, 150px);
+    padding-right: 20px;
+    align-content: center;
+    text-align: end;
+    font-weight: bold;
+    font-family: Arial, serif;
+    color: rgb(102, 102, 102);
+  }
+
+  .labelBox .inputChilds {
+    padding-left: 15px;
+    align-self: center;
+    flex: 1;
+    height: 45px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: Arial, serif;
+  }
+  #gender {
+    align-items: center;
+  }
+  .genderLabels {
+    width: 100px;
+  }
+  #saveBtn {
+    width: 70px;
+    height: 40px;
+    align-self: center;
+    border-radius: 7px;
+    background-color: rgb(255, 115, 0);
+  }
+</style>
