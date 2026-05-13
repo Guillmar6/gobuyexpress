@@ -34,7 +34,7 @@ function logout() {
 }
 
 currentProfile();
-async function currentProfile() {
+async function currentProfile() { // Function for profile information placeholder 
     const current = await fetch("/api/accountInformations");
     const result = await current.json();
     document.getElementById("username").value = result.data.name;
@@ -49,7 +49,7 @@ async function currentProfile() {
         }
     });
 }
-async function saveProfile() {
+async function saveProfile() { // Function for save button on profile page
     const form = document.getElementById("profileInfos");
     const formData = new FormData(form);
     const data = {

@@ -13,11 +13,7 @@ function generateToken(res, user) {
     const token = jwt.sign(
         {
             id: user.id,
-            name: user.name,
-            phone_number: user.phone_number,
-            email: user.email,
-            gender: user.gender,
-            birthday: user.birthday
+            name: user.name
         },
         JWT_KEY,
         {
@@ -65,14 +61,15 @@ function apiLogout(req, res, next) {
     res.clearCookie("goBuyExpressToken");
     res.status(200).redirect('/login');
 }
-function apiAccountInformations(req, res, next) {
+async function apiAccountInformations(req, res, next) {
     const info = req.user;
+    const userInfoFromDB = await getUserByName(info.name);
     const dataFinal = {
         name: info.name,
-        email: info.email,
-        phone_number: info.phone_number,
-        gender: info.gender,
-        birthday: info.birthday
+        email: userInfoFromDB[0].email,
+        phone_number: userInfoFromDB[0].phone_number,
+        gender: userInfoFromDB[0].gender,
+        birthday: userInfoFromDB[0].birthday
     };
     res.status(200).json({
         status: 200,
