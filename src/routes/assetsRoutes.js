@@ -1,11 +1,9 @@
-const express = require('express');
-const {
-    getImage,
-    getIcon
-} = require("../controllers/assetsController");
+const { getAssets } = require("../controllers/assetsController");
 
-const assetsRouter = express.Router();
+function assetsRequests(req, res, next) {
+    getAssets(res, req.path, next);
+}
 
-assetsRouter.get('/assets/images/:imgName', getImage);
-
-module.exports = assetsRouter;
+module.exports = {
+    assetsRequests
+};

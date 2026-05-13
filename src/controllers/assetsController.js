@@ -1,5 +1,5 @@
 const {
-    getImageService
+    getAssetsService
 } = require("../models/assetsModels");
 
 function componentError(res, status, message, data = null) {
@@ -10,16 +10,17 @@ function componentError(res, status, message, data = null) {
     });
 }
 
-async function getImage(req, res, next) {
-    const imgName = req.params.imgName;
+async function getAssets(res, asset, next) {
+    if(!asset.startsWith("/api")) return next();
+    const assetSub = asset.substring(4);
     try {
-        const image = await getImageService(imgName);
-        res.status(200).send(image);
+        const image = await getAssetsService(assetSub);
+        res.status(200).setHeader("Content-Type", "text/plain").end(image);
     } catch(err) {
         componentError(res, 404, "Can't find image.")
     }
 }
 
 module.exports = {
-    getImage
+    getAssets
 };

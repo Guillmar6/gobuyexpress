@@ -1,83 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 </head>
+
 <body>
-  <div id="backgroundColor"></div>
-  <nav id="navigationBar"></nav>
+    <div id="backgroundColor"></div>
+    <nav id="navigationBar"></nav>
 
+    <div id="bannerContainer">
+        <div id="banners">
+            <img id="banner1" src="/api/images/banners/banner1.jpg" alt="Banner" srcset="">
+            <img id="banner2" src="/api/images/banners/banner2.jpg" alt="Banner">
+            <img id="banner3" src="/api/images/banners/banner3.jpg" alt="Banner">
+            <img id="banner4" src="/api/images/banners/banner4.jpg" alt="Banner">
+            <img id="banner5" src="/api/images/banners/banner5.jpg" alt="Banner">
+        </div>
+        <div id="banners-dots">
+            <a href="#banner1"></a>
+            <a href="#banner2"></a>
+            <a href="#banner3"></a>
+            <a href="#banner4"></a>
+            <a href="#banner5"></a>
+        </div>
+    </div>
 
-  
-  <script src="home.js"></script>
-  <style>
-    *,
-    *::before,
-    *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    html {
-        font-size: 6px;
-    }
-    body {
-        font-size: 2.6rem;
-    }
-    #backgroundColor {
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        z-index: -5;
-        background: linear-gradient(to right, #d7d7ff, #9292ff);
-    }
-    #navigationBar {
-        position: absolute;
-        width: 100vw;
-        height: 70px;
-        background-color: #afccec;
-        display: flex;
-        align-items: center;
-    }
-    #navigationBar h1 {
-        font-weight: bold;
-        font-family: Arial, serif;
-        left: 1rem;
-        margin-left: clamp(2rem, 7vw, 20rem);
-    }
-    #navigationBar ul {
-        right: 1rem;
-        width: clamp(30rem, 40vw, 60rem);
-        list-style: none;
-        display: flex;
-        justify-content: space-evenly;
-        margin-left: auto;
-    }
-    .listCompo {
-        width: 5rem;
-        text-align: center;
-    }
-    .listCompo svg {
-        width: 5rem;
-    }
+    <script src="home.js"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    @media screen and (width>=576px) {
-    }
+        html {
+            font-size: 6px;
+        }
 
-    /*  My phone landscape  */
-    @media screen and (width>=768px) {
-    }
-    /*  My phone portrait  */
-    @media screen and (orientation: portrait) and (width>=768px) {
-    }
-    /* usually tablets*/
-    @media screen and (width>=992px) {
-    }
-    /*  My laptop  */
-    @media screen and (width>=1200px) {
-    }
-  </style>
+        body {
+            font-size: 2.6rem;
+        }
+
+        #backgroundColor {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -5;
+            background: linear-gradient(to right, #d7d7ff, #9292ff);
+        }
+
+        #navigationBar {
+            position: absolute;
+            width: 100vw;
+            height: 70px;
+            background-color: #afccec;
+            display: flex;
+            align-items: center;
+        }
+
+        #bannerContainer {
+            top: 100px;
+            justify-self: center;
+            z-index: -1;
+            position: relative;
+            height: fit-content;
+            width: 90vw;
+            max-width: 600px;
+        }
+        #banners {
+            display: flex;
+            height: 100%;
+            aspect-ratio: 11.33 / 4;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            box-shadow: 3px 3px 16px rgba(0, 0, 0, 0.691);
+            border-radius: 10px;
+        }
+        #banners::-webkit-scrollbar {
+            display: none;
+        }
+        img {
+            flex: 1 0 100%;
+            scroll-snap-align: start;
+            object-fit: cover;
+        }
+        #banners-dots {
+            position: absolute;
+            display: flex;
+            column-gap: 10px;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        #banners-dots a {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0.5;
+            transition: opacity ease 250ms;
+        }
+        #banners-dots a:hover {
+            opacity: 1;
+        }
+
+        @media screen and (width>=576px) {}
+
+        /*  My phone landscape  */
+        @media screen and (width>=768px) {}
+
+        /*  My phone portrait  */
+        @media screen and (orientation: portrait) and (width>=768px) {}
+
+        /* usually tablets*/
+        @media screen and (width>=992px) {}
+
+        /*  My laptop  */
+        @media screen and (width>=1200px) {}
+    </style>
 </body>
+
 </html>
