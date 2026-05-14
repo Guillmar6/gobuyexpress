@@ -81,8 +81,8 @@
 
         #bannerContainer {
             position: relative;
-            width: 90vw;
-            max-width: 700px;
+            width: 70vw;
+            max-width: 800px;
             height: fit-content;
         }
 
@@ -133,8 +133,8 @@
         #bannerOffContainer {
             display: flex;
             flex-direction: column;
-            width: 350px;
-            height: 250px;
+            width: 395px;
+            height: auto;
             overflow: auto;
             border-radius: 10px;
             box-shadow: 3px 3px 16px rgba(0, 0, 0, 0.691);
@@ -149,7 +149,10 @@
             flex: 1;
         }
 
-        @media screen and (width <=1052px) {
+        @media screen and (width <=1200px) {
+            #bannerContainer {
+                width: 90vw;
+            }
             #bannersContainer {
                 flex-direction: column;
                 align-items: center;
@@ -158,12 +161,21 @@
             #bannerOffContainer {
                 flex-direction: row;
                 width: 90vw;
-                max-width: 700px;
+                max-width: 800px;
                 height: auto;
             }
 
             #bannerOffContainer img {
                 width: 50%;
+                height: auto;
+            }
+        }
+        @media screen and (width <= 480px) {
+            #bannerOffContainer {
+                flex-direction: column;
+            }
+            #bannerOffContainer img {
+                width: 100%;
                 height: auto;
             }
         }
