@@ -31,7 +31,7 @@ function startAutoSlide() {
     autoSlide = setInterval(() => {
         currentIndex = currentIndex >= totalSlides ? 0 : (currentIndex + 1);
         goToSlide(currentIndex);
-    }, 5000);
+    }, 3000);
 }
 
 function slideTimeout() {
