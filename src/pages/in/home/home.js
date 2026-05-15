@@ -4,7 +4,6 @@ async function loadNavigation() {
     const html = await response.text();
 
     document.getElementById("navigationBar").innerHTML = html;
-    document.getElementById("navigationCurrent").innerText = "Home";
 }
 
 const banners = document.getElementById("banners");

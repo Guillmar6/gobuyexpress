@@ -14,25 +14,80 @@
     <div id="bannersContainer">
         <div id="bannerContainer">
             <div id="banners">
-                <img id="banner1" src="/api/images/banners/banner1.jpg" alt="Banner" srcset="">
+                <img id="banner1" src="/api/images/banners/banner1.jpg" alt="Banner">
                 <img id="banner2" src="/api/images/banners/banner2.jpg" alt="Banner">
                 <img id="banner3" src="/api/images/banners/banner3.jpg" alt="Banner">
                 <img id="banner4" src="/api/images/banners/banner4.jpg" alt="Banner">
                 <img id="banner5" src="/api/images/banners/banner5.jpg" alt="Banner">
             </div>
             <div id="banners-dots">
-                <a href="#banner1"></a>
-                <a href="#banner2"></a>
-                <a href="#banner3"></a>
-                <a href="#banner4"></a>
-                <a href="#banner5"></a>
+                <a></a>
+                <a></a>
+                <a></a>
+                <a></a>
+                <a></a>
             </div>
         </div>
         <div id="bannerOffContainer">
-            <img src="/api/images/banners/joinus.jpg" alt="">
-            <img src="/api/images/banners/30_off.jpg" alt="">
+            <img src="/api/images/banners/joinus.jpg" alt="Banner">
+            <img src="/api/images/banners/30_off.jpg" alt="Banner">
         </div>
     </div>
+
+    <div id="categoriesContainer">
+        <h1>Categories</h1>
+        <hr>
+        <div id="categoriesChild">
+            <a class="categoryBtn">Appliances</a>
+            <a class="categoryBtn">Gadgets</a>
+            <a class="categoryBtn">Clothing</a>
+            <a class="categoryBtn">Furnitures</a>
+            <a class="categoryBtn">School supplies</a>
+        </div>
+    </div>
+
+    <div id="payday-saleContainer">
+        <img src="/api/images/payday-sale.jpg" alt="Payday Sale">
+    </div>
+
+    <p id="aboutusTxt">
+        About Us
+        <br><br>
+        GOBUYEXPRESS is an online shopping website project developed by Team TriNova from Cavite State University Naic,
+        Campus. The website is designed to provide users with a fast, convenient, and user-friendly online shopping
+        experience where customers can browse products, place orders, and manage purchases anytime and anywhere.
+        <br><br>
+        The project aims to demonstrate the use of modern web technologies in creating an efficient e-commerce platform
+        that supports product viewing, customer transactions, order management, and secure shopping processes.
+        GOBUYEXPRESS focuses on accessibility, simplicity, and reliability to meet the growing demand for online
+        purchasing services.
+        <br><br>
+        Through this project, Team TriNova showcases their skills in web development, database management, system
+        design, and user interface creation while applying the concepts and knowledge learned in the BSIT program.
+        <br><br>
+        As part of our academic activity, GOBUYEXPRESS reflects our creativity, teamwork, and dedication in developing
+        an effective and user-friendly e-commerce website.
+    </p>
+    <footer style="width: 100vw;height: auto;min-height: 100px;background-color: white;">
+        <div id="footerContainer">
+            <img class="methods" src="/api/images/payment.jpg" alt="Payment Method">
+            <img class="methods" src="/api/images/delivery.jpg" alt="Delivery Method">
+        </div>
+        <div id="contactsContainer">
+            <div class="contactsChild">
+                <img src="/api/images/icons/phone.png" alt="Phone">
+                <h3>09901234567</h3>
+            </div>
+            <div class="contactsChild">
+                <img src="/api/images/icons/gmail.png" alt="Gmail">
+                <h3>gobuyexpress@gmail.com</h3>
+            </div>
+            <div class="contactsChild">
+                <img src="/api/images/icons/facebook.png" alt="Facebook">
+                <h3>Go Buy Express</h3>
+            </div>
+        </div>
+    </footer>
 
     <script src="home.js"></script>
     <style>
@@ -46,10 +101,17 @@
 
         html {
             font-size: 6px;
+            width: 100vw;
         }
 
         body {
             font-size: 2.6rem;
+            width: 100vw;
+            height: auto;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
         }
 
         #backgroundColor {
@@ -70,13 +132,13 @@
         }
 
         #bannersContainer {
-            position: absolute;
             padding-top: 100px;
             width: 100vw;
             height: fit-content;
             justify-self: center;
             display: flex;
             justify-content: space-around;
+            z-index: -1;
         }
 
         #bannerContainer {
@@ -101,7 +163,7 @@
             display: none;
         }
 
-        img {
+        #banners img {
             flex: 1 0 100%;
             scroll-snap-align: start;
             object-fit: cover;
@@ -153,6 +215,7 @@
             #bannerContainer {
                 width: 90vw;
             }
+
             #bannersContainer {
                 flex-direction: column;
                 align-items: center;
@@ -170,29 +233,131 @@
                 height: auto;
             }
         }
-        @media screen and (width <= 480px) {
+
+        @media screen and (width <=480px) {
             #bannerOffContainer {
                 flex-direction: column;
             }
+
             #bannerOffContainer img {
                 width: 100%;
                 height: auto;
             }
         }
 
-        @media screen and (width>=576px) {}
+        #payday-saleContainer {
+            width: 90vw;
+            height: auto;
+            justify-self: center;
+            border-radius: 10px;
+        }
 
-        /*  My phone landscape  */
-        @media screen and (width>=768px) {}
+        #payday-saleContainer img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
 
-        /*  My phone portrait  */
-        @media screen and (orientation: portrait) and (width>=768px) {}
+        #categoriesContainer {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            padding: 10px;
+            width: 90vw;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-self: center;
+            border-radius: 5px;
+            box-shadow: 3px 3px 16px rgba(0, 0, 0, 0.333);
+        }
 
-        /* usually tablets*/
-        @media screen and (width>=992px) {}
+        #categoriesContainer h1 {
+            padding-left: 100px;
+            width: 90vw;
+            justify-self: center;
+            font-family: Arial, sans-serif;
+        }
 
-        /*  My laptop  */
-        @media screen and (width>=1200px) {}
+        #categoriesChild {
+            padding-top: 10px;
+            width: 90vw;
+            justify-self: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .categoryBtn {
+            height: 50px;
+            min-width: 100px;
+            align-content: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        @media screen and (width<=700px) {
+            #categoriesContainer h1 {
+                padding-left: 0;
+                text-align: center;
+            }
+        }
+
+        #aboutusTxt {
+            font-family: Arial, sans-serif;
+            width: 90vw;
+            justify-self: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        #footerContainer {
+            width: 100vw;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+        }
+        .methods {
+            width: 50%;
+            height: auto;
+        }
+        @media screen and (width <= 626px) {
+            #footerContainer {
+                flex-direction: column;
+            }
+            .methods {
+                width: 90vw;
+                max-width: 400px;
+                align-self: center;
+            }
+        }
+        #contactsContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            height: 200px;
+        }
+        @media screen and (width <= 626px) {
+            #contactsContainer {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .contactsChild {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .contactsChild img {
+            width: 30px;
+            height: 30px;
+        }.contactsChild h3 {
+            padding-left: 10px;
+            align-self: center;
+        }
     </style>
 </body>
 
