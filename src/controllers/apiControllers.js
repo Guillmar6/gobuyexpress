@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 const {
     getUserByName, 
     createUser,
-    updateUserProfile
+    updateUserProfile,
+    changeUserPassword
 } = require("../models/apiDatabaseUserModels");
 
 const JWT_KEY = process.env.JWT_KEY;
@@ -99,7 +100,35 @@ async function apiUpdateProfile(req, res, next) {
         res.status(200).json({
             status: 200,
             message: "Update successfully.",
-            data: user[0]
+            data: data
+        });
+    } catch(err) {}
+}
+
+async function apiChange_password(req, res, next) {
+    const {
+        old_password,
+        new_password
+    } = req.body;
+    try {
+        const getInfo = await getUserByName(req.user.name);
+        if(getInfo.length === 0) return res.status(404).json({
+            status: 404,
+            message: "User not found",
+            data: null
+        });
+
+        if(old_password !== getInfo[0].password) return res.status(400).json({
+            status: 400,
+            message: "Wrong currentPassword",
+            data: null
+        });
+
+        const result = await changeUserPassword(new_password, req.user.name);
+        res.status(200).json({
+            status: 200,
+            message: "Change password successfully!",
+            data: null
         });
     } catch(err) {}
 }
@@ -109,5 +138,6 @@ module.exports = {
     apiSignup,
     apiLogout,
     apiAccountInformations,
-    apiUpdateProfile
+    apiUpdateProfile,
+    apiChange_password
 };

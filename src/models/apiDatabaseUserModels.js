@@ -22,8 +22,17 @@ async function updateUserProfile(name, phone_number, email, gender, birthday) {
     return result.rows;
 }
 
+async function changeUserPassword(password, username) {
+    const result = await pool.query(
+        "UPDATE users SET password=$1 WHERE name=$2 RETURNING *",
+        [password, username]
+    );
+    return result.rows;
+}
+
 module.exports = {
     getUserByName,
     createUser,
-    updateUserProfile
+    updateUserProfile,
+    changeUserPassword
 };

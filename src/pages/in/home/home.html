@@ -38,11 +38,11 @@
         <h1>Categories</h1>
         <hr>
         <div id="categoriesChild">
-            <a class="categoryBtn"><u>Appliances</u></a>
-            <a class="categoryBtn"><u>Gadgets</u></a>
-            <a class="categoryBtn"><u>Clothing</u></a>
-            <a class="categoryBtn"><u>Furnitures</u></a>
-            <a class="categoryBtn"><u>School supplies</u></a>
+            <a id="categoryBtn" href="../products/products.html#appliances"><u>Appliances</u></a>
+            <a id="categoryBtn" href="../products/products.html#gadgets"><u>Gadgets</u></a>
+            <a id="categoryBtn" href="../products/products.html#clothing"><u>Clothing</u></a>
+            <a id="categoryBtn" href="../products/products.html#furnitures"><u>Furnitures</u></a>
+            <a id="categoryBtn" href="../products/products.html#school-supplies"><u>School supplies</u></a>
         </div>
     </div>
 
@@ -120,15 +120,6 @@
             height: 100vh;
             z-index: -5;
             background: linear-gradient(to right, #d7d7ff, #9292ff);
-        }
-
-        #navigationBar {
-            position: absolute;
-            width: 100vw;
-            height: 70px;
-            background-color: #afccec;
-            display: flex;
-            align-items: center;
         }
 
         #bannersContainer {
@@ -290,7 +281,7 @@
             flex-wrap: wrap;
         }
 
-        .categoryBtn {
+        #categoryBtn {
             height: 50px;
             min-width: 100px;
             align-content: center;
@@ -310,7 +301,7 @@
             font-family: Arial, sans-serif;
             width: 90vw;
             justify-self: center;
-            margin-top: 50px;
+            margin-top: 200px;
             margin-bottom: 50px;
         }
 

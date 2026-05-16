@@ -1,14 +1,25 @@
-const infosMenu = document.getElementById("profilePageChild");
-menuPages();
-async function menuPages() {
-    const response = await fetch("menus/profile.html");
-    const html = await response.text();
-
-    infosMenu.innerHTML = html;
-}
 const menuOne = document.getElementById("profilePageChild");
 const menuTwo = document.getElementById("addressesPageChild");
 const menuThree = document.getElementById("change_passwordPageChild");
+const menuFour = document.getElementById("order_statusPageChild");
+menuPages();
+async function menuPages() {
+    const profileResponse = await fetch("menus/profile.html");
+    const profileHtml = await profileResponse.text();
+    menuOne.innerHTML = profileHtml;
+
+    const addressesResponse = await fetch("menus/addresses.html");
+    const addressesHtml = await addressesResponse.text();
+    menuTwo.innerHTML = addressesHtml;
+
+    const change_passwordResponse = await fetch("menus/change_password.html");
+    const change_passwordHtml = await change_passwordResponse.text();
+    menuThree.innerHTML = change_passwordHtml;
+
+    const order_statusResponse = await fetch("menus/order_status.html");
+    const order_statusHtml = await order_statusResponse.text();
+    menuFour.innerHTML = order_statusHtml;
+}
 const displayCurrentPage = document.getElementById("displayCurrentPage");
 window.addEventListener("hashchange", hashCHanged);
 hashCHanged();
@@ -18,17 +29,26 @@ function hashCHanged() {
         menuOne.style.display = "block";
         menuTwo.style.display = "none";
         menuThree.style.display = "none";
+        menuFour.style.display = "none";
         displayCurrentPage.innerText = "Profile";
     } else if(hash === "#addresses") {
         menuOne.style.display = "none";
         menuTwo.style.display = "block";
         menuThree.style.display = "none";
+        menuFour.style.display = "none";
         displayCurrentPage.innerText = "Addresses";
     } else if(hash === "#change_password") {
         menuOne.style.display = "none";
         menuTwo.style.display = "none";
         menuThree.style.display = "block";
+        menuFour.style.display = "none";
         displayCurrentPage.innerText = "Change Password";
+    } else if(hash === "#order_status") {
+        menuOne.style.display = "none";
+        menuTwo.style.display = "none";
+        menuThree.style.display = "none";
+        menuFour.style.display = "block";
+        displayCurrentPage.innerText = "Order Status";
     }
 }
 
@@ -80,7 +100,29 @@ async function saveProfile() { // Function for save button on profile page
             body: JSON.stringify(data)
         });
         const result = await response.json();
-        if(response.ok) alert("Save successfully!");
+        if(response.ok) alert(`${result.message}`);
+        else console.log(`Error: ${result.data}`);
+    } catch(err) {
+        console.log(`Error: ${err}`);
+    }
+}
+async function savePassword() { // Function for save button on change password page
+    const form = document.getElementById("profileChange_password");
+    const formData = new FormData(form);
+    const data = {
+        old_password: formData.get("currentPassword"),
+        new_password: formData.get("newPassword")
+    };
+    try {
+        const response = await fetch("/api/change_password", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        if(response.ok) alert(`${result.message}`);
         else console.log(`Error: ${result.data}`);
     } catch(err) {
         console.log(`Error: ${err}`);
