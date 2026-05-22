@@ -106,6 +106,8 @@ async function saveProfile() { // Function for save button on profile page
         console.log(`Error: ${err}`);
     }
 }
+const currentPasswordInput = document.getElementById("currentPassword");
+const newPasswordInput = document.getElementById("newPassword");
 async function savePassword() { // Function for save button on change password page
     const form = document.getElementById("profileChange_password");
     const formData = new FormData(form);
@@ -123,7 +125,7 @@ async function savePassword() { // Function for save button on change password p
         });
         const result = await response.json();
         if(response.ok) alert(`${result.message}`);
-        else console.log(`Error: ${result.data}`);
+        else alert(`Error: ${result.message}`);
     } catch(err) {
         console.log(`Error: ${err}`);
     }
