@@ -40,6 +40,12 @@ function hashChanged() {
 
 loadHtml();
 async function loadHtml() {
-  const html = await fetch("compo/productContainer.html");
-  document.getElementById("container").innerHTML = await html.text();
+  const containersCount = 4;
+  const html = (await fetch("compo/productContainer.html")).text();
+  
+  for(let i = 0; i < containersCount; i++) {
+    const newProductContainer = document.createElement('div');
+    newProductContainer.innerHTML = await html;
+    document.getElementById("container").appendChild(newProductContainer);
+  }
 }
