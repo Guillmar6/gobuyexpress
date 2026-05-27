@@ -36,7 +36,7 @@ function hashCHanged() {
         menuTwo.style.display = "block";
         menuThree.style.display = "none";
         menuFour.style.display = "none";
-        displayCurrentPage.innerText = "Addresses";
+        displayCurrentPage.innerText = "Address";
     } else if(hash === "#change_password") {
         menuOne.style.display = "none";
         menuTwo.style.display = "none";
