@@ -5,7 +5,8 @@ const {
     getUserByName, 
     createUser,
     updateUserProfile,
-    changeUserPassword
+    changeUserPassword,
+    updateUserAddress
 } = require("../models/apiDatabaseUserModels");
 
 const JWT_KEY = process.env.JWT_KEY;
@@ -70,7 +71,8 @@ async function apiAccountInformations(req, res, next) {
         email: userInfoFromDB[0].email,
         phone_number: userInfoFromDB[0].phone_number,
         gender: userInfoFromDB[0].gender,
-        birthday: userInfoFromDB[0].birthday
+        birthday: userInfoFromDB[0].birthday,
+        address: userInfoFromDB[0].address
     };
     res.status(200).json({
         status: 200,
@@ -91,7 +93,7 @@ async function apiUpdateProfile(req, res, next) {
         const result = getUserByName(currentUser);
         if(result.length === 0) return res.status(404).json({
             status: 404,
-            message: "User doesnt exists.",
+            message: "User does not exists.",
             data: null
         });
 
@@ -102,7 +104,31 @@ async function apiUpdateProfile(req, res, next) {
             message: "Update successfully.",
             data: data
         });
-    } catch(err) {}
+    } catch(err) {
+        console.log(`Error: ${err.stack}`);
+    }
+}
+
+async function apiUpdateAddress(req, res, next) {
+    const currentUser = req.user.name;
+    const { address } = req.body;
+    try {
+        const result = getUserByName(currentUser);
+        if(result.length === 0) return res.status(404).json({
+            status: 404,
+            message: "User does not exists.",
+            data: null
+        });
+        const user = await updateUserAddress(currentUser, address);
+        generateToken(res, user[0]);
+        res.status(200).json({
+            status: 200,
+            message: "Update successfully",
+            data: null
+        });
+    } catch(err) {
+        console.log(`Error: ${err.stack}`);
+    }
 }
 
 async function apiChange_password(req, res, next) {
@@ -139,5 +165,6 @@ module.exports = {
     apiLogout,
     apiAccountInformations,
     apiUpdateProfile,
-    apiChange_password
+    apiChange_password,
+    apiUpdateAddress
 };

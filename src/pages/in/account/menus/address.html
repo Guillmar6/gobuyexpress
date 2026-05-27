@@ -4,10 +4,11 @@
       <label class="labelChilds" for="address">Address</label>
       <input class="inputChilds" type="text" name="address" id="address" required />
     </div>
-    <input id="saveBtn" onclick="saveAddress()" type="button" value="Save" />
+  </div>
+  <input id="saveBtn" onclick="saveAddress()" type="button" value="Save" />
+</form>
 <style>
-
-#locSetter {
+  #locSetter {
     width: 1000px;
     height: 150px;
     display: flex;
@@ -16,5 +17,8 @@
     align-items: left;
     gap: 20px;
   }
-
+  #addressDelivery {
+    display: flex;
+    flex-direction: column;
+  }
 </style>

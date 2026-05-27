@@ -80,6 +80,8 @@ async function currentProfile() { // Function for profile information placeholde
             radio.checked = true;
         }
     });
+
+    document.getElementById("address").value = result.data.address;
 }
 async function saveProfile() { // Function for save button on profile page
     const form = document.getElementById("profileInfos");
@@ -101,7 +103,28 @@ async function saveProfile() { // Function for save button on profile page
         });
         const result = await response.json();
         if(response.ok) alert(`${result.message}`);
-        else console.log(`Error: ${result.data}`);
+        else alert(`Error: ${result.message}`);
+    } catch(err) {
+        console.log(`Error: ${err}`);
+    }
+}
+async function saveAddress() {
+    const form = document.getElementById("addressDelivery");
+    const formData = new FormData(form);
+    const data = {
+        address: formData.get("address")
+    };
+    try {
+        const response = await fetch("/api/updateAddress", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        if(response.ok) alert(`${result.message}`);
+        else alert(`Error: ${result.message}`);
     } catch(err) {
         console.log(`Error: ${err}`);
     }
