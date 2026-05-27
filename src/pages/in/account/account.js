@@ -1,5 +1,5 @@
 const menuOne = document.getElementById("profilePageChild");
-const menuTwo = document.getElementById("addressesPageChild");
+const menuTwo = document.getElementById("addressPageChild");
 const menuThree = document.getElementById("change_passwordPageChild");
 const menuFour = document.getElementById("order_statusPageChild");
 menuPages();
@@ -8,9 +8,9 @@ async function menuPages() {
     const profileHtml = await profileResponse.text();
     menuOne.innerHTML = profileHtml;
 
-    const addressesResponse = await fetch("menus/addresses.html");
-    const addressesHtml = await addressesResponse.text();
-    menuTwo.innerHTML = addressesHtml;
+    const addressResponse = await fetch("menus/address.html");
+    const addressHtml = await addressResponse.text();
+    menuTwo.innerHTML = addressHtml;
 
     const change_passwordResponse = await fetch("menus/change_password.html");
     const change_passwordHtml = await change_passwordResponse.text();
@@ -31,7 +31,7 @@ function hashCHanged() {
         menuThree.style.display = "none";
         menuFour.style.display = "none";
         displayCurrentPage.innerText = "Profile";
-    } else if(hash === "#addresses") {
+    } else if(hash === "#address") {
         menuOne.style.display = "none";
         menuTwo.style.display = "block";
         menuThree.style.display = "none";
