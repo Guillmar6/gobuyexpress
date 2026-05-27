@@ -1,6 +1,6 @@
 <div id="productContainer">
   <div id="productChild">
-    <img src="" alt="Product Image">
+    <img id="imageSrc" src="" alt="Product Image">
     <span>Description</span>
   </div>
   <div id="addToCartContainer">
@@ -44,8 +44,8 @@
   }
 
   #productChild img {
-    width: 98%;
-    height: 98%;
+    width: auto;
+    height: 50%;
     border-radius: 15px 15px 0 0;
     box-shadow: inset 3px 3px 16px rgba(0, 0, 0, 0.300);
     bottom: 10px;
@@ -53,9 +53,12 @@
   }
 
   #productChild span {
+    padding-top: 10px;
     width: 98%;
     min-height: 100px;
     height: fit-content;
+    font-size: 12px;
+    white-space: pre-line;
   }
 
   #addToCartContainer {

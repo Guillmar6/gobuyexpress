@@ -1,3 +1,5 @@
+let hash = window.location.hash;
+
 loadNavigation();
 async function loadNavigation() {
     const response = await fetch("../components/navigationBar.html");
@@ -10,7 +12,7 @@ const bannerImg = document.getElementById("bannerImg");
 window.addEventListener("hashchange", hashChanged);
 hashChanged();
 function hashChanged() {
-  const hash = window.location.hash;
+  hash = window.location.hash;
   switch(hash) {
     case "#appliances":
       bannerImg.src = "/api/images/product_banners/appliances.jpg";
@@ -40,12 +42,27 @@ function hashChanged() {
 
 loadHtml();
 async function loadHtml() {
-  const containersCount = 4;
-  const html = (await fetch("compo/productContainer.html")).text();
+  const value = hash.substring(1);
   
-  for(let i = 0; i < containersCount; i++) {
+  const getProductHtml = await fetch("compo/productContainer.html");
+  const productHtml = await getProductHtml.text();
+
+  const getInfo = await fetch(`/api/images/categories/${value}/info.json`);
+  const info = await getInfo.json();
+  
+  for(let i = 0; i < info.names.length; i++) {
     const newProductContainer = document.createElement('div');
-    newProductContainer.innerHTML = await html;
+    newProductContainer.innerHTML = await productHtml;
     document.getElementById("container").appendChild(newProductContainer);
   }
+
+  const imagesContainer = document.querySelectorAll("#container img");
+  imagesContainer.forEach((image, index) => {
+    image.src = `/api/images/categories/${value}/${info.names[index]}.jpg`;
+  });
+  
+  const descriptionsContainer = document.querySelectorAll("#container span");
+  descriptionsContainer.forEach((desc, index) => {
+    desc.textContent = info.descriptions[index];
+  });
 }
