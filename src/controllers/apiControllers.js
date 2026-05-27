@@ -18,7 +18,7 @@ function generateToken(res, user) {
         },
         JWT_KEY,
         {
-            expiresIn: "1h"
+            expiresIn: "24h"
         }
     );
     res.cookie(
