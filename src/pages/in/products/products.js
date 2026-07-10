@@ -65,4 +65,51 @@ async function loadHtml() {
   descriptionsContainer.forEach((desc, index) => {
     desc.textContent = info.descriptions[index];
   });
+
+  const productName = document.querySelectorAll("#container #productName");
+  productName.forEach((pName, index) => {
+    pName.textContent = info.names[index];
+  });
+
+  const productType = document.querySelectorAll("#container #productType");
+  productType.forEach((pType, index) => {
+    pType.textContent = info.types[0];
+  });
+
+  const productDescription = document.querySelectorAll("#container #productDescription");
+  productDescription.forEach((pDescription, index) => {
+    pDescription.textContent = info.descriptions[index];
+  });
 }
+
+const addToCartBtn = document.querySelector('#container');
+addToCartBtn.addEventListener('click', async (event) => {
+  if(event.target.tagName === 'BUTTON') {
+    const btnClicked = event.target.closest('#container > div');
+    if(btnClicked) {
+      const childArray = Array.from(addToCartBtn.querySelectorAll('#container > div'));
+      const index = childArray.indexOf(btnClicked);
+      
+      const childArrayProduct = document.querySelectorAll('#container > div');
+      const child = childArrayProduct[index];
+
+      if(child) {
+        const productName = child.querySelector('#productName');
+        const productType = child.querySelector('#productType');
+        const productDescription = child.querySelector('#productDescription');
+
+        const data = {
+          productName: productName.textContent
+        };
+        const result = await fetch("/api/addToCart", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+        alert("Add to cart success!");
+      }
+    }
+  }
+});

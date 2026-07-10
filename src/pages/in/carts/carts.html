@@ -9,7 +9,7 @@
   <div id="backgroundColor"></div>
   <nav id="navigationBar"></nav>
 
-
+  <div id="cartsMainContainer"></div>
   
   <script src="carts.js"></script>
   <style>
@@ -63,20 +63,15 @@ body {
     width: 5rem;
 }
 
-@media screen and (width>=576px) {
-}
-
-/*  My phone landscape  */
-@media screen and (width>=768px) {
-}
-/*  My phone portrait  */
-@media screen and (orientation: portrait) and (width>=768px) {
-}
-/* usually tablets*/
-@media screen and (width>=992px) {
-}
-/*  My laptop  */
-@media screen and (width>=1200px) {
+#cartsMainContainer {
+    width: 95vw;
+    max-width: 640px;
+    height: 100vh;
+    justify-self: center;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
   </style>
 </body>

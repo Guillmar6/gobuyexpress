@@ -37,10 +37,46 @@ async function changeUserPassword(password, username) {
     return result.rows;
 }
 
+async function addCartToUser(username, productName) {
+    const result = await pool.query(
+        "UPDATE users SET carts=array_append(carts, $2) WHERE name=$1 RETURNING *",
+        [username, productName]
+    );
+    return result.rows;
+}
+
+async function getProductInfoByName(name) {
+    const result = await pool.query(
+        "SELECT * FROM products WHERE product_name = $1",
+        [name]
+    );
+    return result.rows;
+}
+
+async function getCartsFromUser(username) {
+    const result = await pool.query(
+        "SELECT carts FROM users WHERE name = $1",
+        [username]
+    );
+    return result.rows;
+}
+
+async function removeCartFromUser(username, productName) {
+    const result = await pool.query(
+        "UPDATE users SET carts = array_remove(carts, $2) WHERE name = $1 RETURNING *",
+        [username, productName]
+    );
+    return result.rows;
+}
+
 module.exports = {
     getUserByName,
     createUser,
     updateUserProfile,
     changeUserPassword,
-    updateUserAddress
+    updateUserAddress,
+    getProductInfoByName,
+    addCartToUser,
+    getCartsFromUser,
+    removeCartFromUser
 };

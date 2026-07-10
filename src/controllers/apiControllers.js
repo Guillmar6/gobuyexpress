@@ -6,7 +6,11 @@ const {
     createUser,
     updateUserProfile,
     changeUserPassword,
-    updateUserAddress
+    updateUserAddress,
+    getProductInfoByName,
+    addCartToUser,
+    getCartsFromUser,
+    removeCartFromUser
 } = require("../models/apiDatabaseUserModels");
 
 const JWT_KEY = process.env.JWT_KEY;
@@ -159,6 +163,59 @@ async function apiChange_password(req, res, next) {
     } catch(err) {}
 }
 
+async function apiAddToCart(req, res, next) {
+    const {
+        productName
+    } = req.body;
+    try {
+        const result = await addCartToUser(req.user.name, productName);
+        res.status(200).json({
+            status: 200,
+            message: "Add to cart success.",
+            data: null
+        });
+    } catch (err) {}
+}
+
+async function apiGetProductInfoByName(req, res, next) {
+    const {
+        productName
+    } = req.body;
+    try {
+        const result = await getProductInfoByName(productName);
+        res.status(200).json({
+            status: 200,
+            message: "Success get info!",
+            data: result[0]
+        });
+    } catch (err) {}
+}
+
+async function apiGetCartsFromUser(req, res, next) {
+    try {
+        const result = await getCartsFromUser(req.user.name);
+        res.status(200).json({
+            status: 200,
+            message: "Success get carts!",
+            data: result
+        });
+    } catch (err) {}
+}
+
+async function apiRemoveCartFromUser(req, res, next) {
+    const {
+        productName
+    } = req.body;
+    try {
+        const result = await removeCartFromUser(req.user.name, productName);
+        res.status(200).json({
+            status: 200,
+            message: "Success cart remove!",
+            data: result
+        });
+    } catch (err) {}
+}
+
 module.exports = {
     apiLogin,
     apiSignup,
@@ -166,5 +223,9 @@ module.exports = {
     apiAccountInformations,
     apiUpdateProfile,
     apiChange_password,
-    apiUpdateAddress
+    apiUpdateAddress,
+    apiAddToCart,
+    apiGetProductInfoByName,
+    apiGetCartsFromUser,
+    apiRemoveCartFromUser
 };
