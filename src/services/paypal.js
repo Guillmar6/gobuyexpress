@@ -1,19 +1,20 @@
 require('dotenv').config();
 const axios = require('axios'); 
 
-async function generatePaypalAccessToken() {console.log('generatePaypalTokenStart');
-    console.log('paypalbaseurl = ' + process.env.PAYPAL_BASE_URL + '\npaypalclientid = ' + process.env.PAYPAL_CLIENT_ID + 'paypalsecrete = ' + process.env.PAYPAL_SECRETE);
+async function generatePaypalAccessToken() {
     const response = await axios({
         url: process.env.PAYPAL_BASE_URL + '/v1/oauth2/token',
         method: 'post',
         data: 'grant_type=client_credentials',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
         auth: {
             username: process.env.PAYPAL_CLIENT_ID,
             password: process.env.PAYPAL_SECRETE
         }
     });
 
-    console.log('generatePaypalTokenEnd');
     return response.data.access_token;
 }
 
