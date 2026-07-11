@@ -247,7 +247,7 @@ async function apiCapturePayment(req, res, next) {
         await addOrderToUser(req.user.name, req.query.productName);
         await removeCartFromUser(req.user.name, req.query.productName);
         
-        res.redirect(process.env.BASE_URL + '/in/account/account.html#order_status');
+        res.redirect(process.env.BASE_URL + '/in/account/account.html#order_history');
     } catch (err) {}
 }
 
