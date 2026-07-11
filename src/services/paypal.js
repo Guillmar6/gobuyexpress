@@ -15,7 +15,7 @@ async function generatePaypalAccessToken() {
     return response.data.access_token;
 }
 
-async function createOrder(productName, productDescription, productPrice, currencyCode) {
+async function createOrder(productName, productDescription, productPrice, currencyCode) {console.log('paypalStart');
     const accessToken = await generatePaypalAccessToken();
 
     const response = await axios({
@@ -61,6 +61,7 @@ async function createOrder(productName, productDescription, productPrice, curren
         })
     });
 
+    console.log('paypalEnd');
     return response.data.links.find(link => link.rel === 'approve').href;
 }
 
