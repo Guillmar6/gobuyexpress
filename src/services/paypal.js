@@ -6,9 +6,6 @@ async function generatePaypalAccessToken() {
         url: process.env.PAYPAL_BASE_URL + '/v1/oauth2/token',
         method: 'post',
         data: 'grant_type=client_credentials',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
         auth: {
             username: process.env.PAYPAL_CLIENT_ID,
             password: process.env.PAYPAL_SECRETE
