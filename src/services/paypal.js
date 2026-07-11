@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios'); 
 
-async function generatePaypalAccessToken() {
+async function generatePaypalAccessToken() {console.log('generatePaypalTokenStart');
     const response = await axios({
         url: process.env.PAYPAL_BASE_URL + '/v1/oauth2/token',
         method: 'post',
@@ -12,11 +12,12 @@ async function generatePaypalAccessToken() {
         }
     });
 
+    console.log('generatePaypalTokenStart');
     return response.data.access_token;
 }
 
-async function createOrder(productName, productDescription, productPrice, currencyCode) {console.log('paypalStart');
-    const accessToken = await generatePaypalAccessToken();console.log('paypalGenerateToken');
+async function createOrder(productName, productDescription, productPrice, currencyCode) {
+    const accessToken = await generatePaypalAccessToken();
 
     const response = await axios({
         url: process.env.PAYPAL_BASE_URL + '/v2/checkout/orders',
@@ -61,7 +62,6 @@ async function createOrder(productName, productDescription, productPrice, curren
         })
     });
 
-    console.log('paypalEnd');
     return response.data.links.find(link => link.rel === 'approve').href;
 }
 

@@ -223,7 +223,7 @@ async function apiRemoveCartFromUser(req, res, next) {
     } catch (err) {}
 }
 
-async function apiPaypalPayment(req, res, next) {console.log('apiControllerPaypalStart');
+async function apiPaypalPayment(req, res, next) {
     const {
         productName,
         productDescription
@@ -232,7 +232,6 @@ async function apiPaypalPayment(req, res, next) {console.log('apiControllerPaypa
         const productInfo = await getProductInfoByName(productName);    
         const url = await createOrder(productName, productDescription, productInfo[0].product_price, 'PHP');
 
-        console.log('apiControllerPaypalEnd');
         res.status(200).json({
             status: 200,
             message: "Paypal Payment",
