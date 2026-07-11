@@ -10,7 +10,11 @@ const {
     apiAddToCart,
     apiGetProductInfoByName,
     apiGetCartsFromUser,
-    apiRemoveCartFromUser
+    apiRemoveCartFromUser,
+    apiPaypalPayment,
+    apiCapturePayment,
+    apiGetOrdersFromUser,
+    apiRemoveOrderFromUser
 } = require("../controllers/apiControllers");
 
 const apiRouter = express.Router();
@@ -26,5 +30,9 @@ apiRouter.post('/addToCart', apiAddToCart);
 apiRouter.post('/getProductByName', apiGetProductInfoByName);
 apiRouter.post('/getCartsFromUser', apiGetCartsFromUser);
 apiRouter.post('/removeCartFromUser', apiRemoveCartFromUser);
+apiRouter.post('/paypalPayment', apiPaypalPayment);
+apiRouter.get('/order_complete', apiCapturePayment);
+apiRouter.post('/getOrdersFromUser', apiGetOrdersFromUser);
+apiRouter.post('/removeOrderFromUser', apiRemoveOrderFromUser);
 
 module.exports = apiRouter;

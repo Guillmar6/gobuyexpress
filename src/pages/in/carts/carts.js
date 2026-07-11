@@ -71,19 +71,37 @@ document.querySelector('#cartsMainContainer').addEventListener('click', async (e
     const cartsArray = Array.from(document.querySelectorAll('#cartsMainContainer > div'));
     const cartIndex = cartsArray.indexOf(currentCart);
     
-    if(event.target.id === 'orderBtn') {}
+    if(event.target.id === 'orderBtn') {
+        const loading = document.getElementById('loadingContainer');
+        loading.style.display = 'block';
+        const getUrl = await fetch('/api/paypalPayment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                productName: currentCart.querySelector('#productName').textContent,
+                productDescription: currentCart.querySelector('#description').textContent
+            })
+        });
+        const result = await getUrl.json();
+        loading.style.display = 'none';
+        window.location.href = await result.data;
+    }
     else if(event.target.id === 'deleteCartBtn') {
-        const data = {
-            productName: currentCart.querySelector('#productName').textContent
-        };
+        const loading = document.getElementById('loadingContainer');
+        loading.style.display = 'block';
         const removeCart = await fetch('/api/removeCartFromUser', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                productName: currentCart.querySelector('#productName').textContent
+            })
         });
         currentCart.style.display = "none";
         alert("Successfully remove!");
+        loading.style.display = 'none';
     }
 });

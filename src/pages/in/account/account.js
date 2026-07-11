@@ -1,7 +1,7 @@
 const menuOne = document.getElementById("profilePageChild");
 const menuTwo = document.getElementById("addressPageChild");
 const menuThree = document.getElementById("change_passwordPageChild");
-const menuFour = document.getElementById("order_statusPageChild");
+const menuFour = document.getElementById("order_historyPageChild");
 menuPages();
 async function menuPages() {
     const profileResponse = await fetch("menus/profile.html");
@@ -16,9 +16,9 @@ async function menuPages() {
     const change_passwordHtml = await change_passwordResponse.text();
     menuThree.innerHTML = change_passwordHtml;
 
-    const order_statusResponse = await fetch("menus/order_status.html");
-    const order_statusHtml = await order_statusResponse.text();
-    menuFour.innerHTML = order_statusHtml;
+    const order_historyResponse = await fetch("menus/order_history.html");
+    const order_historyHtml = await order_historyResponse.text();
+    menuFour.innerHTML = order_historyHtml;
 }
 const displayCurrentPage = document.getElementById("displayCurrentPage");
 window.addEventListener("hashchange", hashCHanged);
@@ -43,12 +43,12 @@ function hashCHanged() {
         menuThree.style.display = "block";
         menuFour.style.display = "none";
         displayCurrentPage.innerText = "Change Password";
-    } else if(hash === "#order_status") {
+    } else if(hash === "#order_history") {
         menuOne.style.display = "none";
         menuTwo.style.display = "none";
         menuThree.style.display = "none";
         menuFour.style.display = "block";
-        displayCurrentPage.innerText = "Order Status";
+        displayCurrentPage.innerText = "Order History";
     }
 }
 
@@ -165,3 +165,68 @@ function menuBtnClicked() {
         isShown = !isShown;
     }
 }
+
+async function ordersContainer() {
+    const getOrderHtml = await fetch("menus/compo/order.html");
+    const orderHtml = await getOrderHtml.text();
+    const getOrders = await fetch('/api/getOrdersFromUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const result = await getOrders.json();
+    const orders = result.data[0].orders;
+    orders.forEach(async (order, index) => {
+        const newOrderContainer = document.createElement('div');
+        newOrderContainer.innerHTML = await orderHtml;
+
+        const data = {
+            productName: order
+        };
+        const getProductInfo = await fetch('/api/getProductByName', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        const result = await getProductInfo.json();
+        const productName = newOrderContainer.querySelector('#productName');
+        const image = newOrderContainer.querySelector('#cartImage');
+        const description = newOrderContainer.querySelector('#description');
+
+        productName.textContent = result.data.product_name;
+        image.src = `/api/images/categories/${result.data.product_type}/${order}.jpg`;
+        description.textContent = result.data.product_description;
+
+
+        document.getElementById("ordersContainer").appendChild(newOrderContainer);
+    });
+}
+ordersContainer();
+
+document.querySelector('#order_historyPageChild').addEventListener('click', async (event) => {
+    if(event.target.tagName !== 'BUTTON') return;
+    const currentOrder = event.target.closest('#ordersContainer > div');
+    if(!currentOrder) return;
+    const ordersArray = Array.from(document.querySelectorAll('#cartsMainContainer > div'));
+    const orderIndex = ordersArray.indexOf(currentOrder);
+
+    if(event.target.id === 'deleteOrderBtn') {
+        const loading = document.getElementById('loadingContainer');
+        loading.style.display = 'block';
+        const removeOrder = await fetch('/api/removeOrderFromUser', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                productName: currentOrder.querySelector('#productName').textContent
+            })
+        });
+        currentOrder.style.display = "none";
+        alert("Successfully remove!");
+        loading.style.display = 'none';
+    }
+});

@@ -11,6 +11,12 @@
   <div id="backgroundColor"></div>
   <nav id="navigationBar"></nav>
 
+  <div id="loadingContainer">
+    <div id="loadingBackground">
+        <span id="loading"></span>
+        <span id="loadingText">Please wait</span>
+    </div>
+  </div>
   <div id="bannerContainer">
     <img id="bannerImg" alt="Banner">
   </div>
@@ -76,6 +82,48 @@
       gap: 15px;
       justify-content: space-around;
       margin-bottom: 100px;
+    }
+
+    #loadingContainer {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(208, 208, 208, 0.657);
+      justify-items: center;
+      align-content: center;
+      z-index: 5;
+      display: none;
+    }
+    #loadingBackground {
+      width: 300px;
+      height: 200px;
+      background-color: rgba(0, 0, 0, 0.653);
+      border-radius: 35px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #loading {
+      border: 2px solid white;
+      border-radius: 100%;
+      width: 50px;
+      height: 50px;
+      border-color: transparent;
+      border-top-color: grey;
+      animation: loadingRotate 1s ease infinite;
+    }
+    @keyframes loadingRotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    #loadingText {
+      color: white;
+      font-family: 'Arial';
     }
   </style>
 </body>

@@ -85,6 +85,8 @@ async function loadHtml() {
 const addToCartBtn = document.querySelector('#container');
 addToCartBtn.addEventListener('click', async (event) => {
   if(event.target.tagName === 'BUTTON') {
+    const loading = document.getElementById('loadingContainer');
+    loading.style.display = 'block';
     const btnClicked = event.target.closest('#container > div');
     if(btnClicked) {
       const childArray = Array.from(addToCartBtn.querySelectorAll('#container > div'));
@@ -109,6 +111,7 @@ addToCartBtn.addEventListener('click', async (event) => {
           body: JSON.stringify(data)
         });
         alert("Add to cart success!");
+        loading.style.display = 'none';
       }
     }
   }

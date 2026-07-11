@@ -10,8 +10,15 @@ const {
     getProductInfoByName,
     addCartToUser,
     getCartsFromUser,
-    removeCartFromUser
+    removeCartFromUser,
+    addOrderToUser,
+    getOrdersFromUser,
+    removeOrderFromUser
 } = require("../models/apiDatabaseUserModels");
+const {
+    capturePayment,
+    createOrder
+} = require('../services/paypal');
 
 const JWT_KEY = process.env.JWT_KEY;
 
@@ -32,7 +39,7 @@ function generateToken(res, user) {
         {
             httpOnly: true,
             secure: false,
-            sameSite: "strict",
+            sameSite: "lax",
             maxAge: 60 * 60 * 1000
         }
     );
@@ -216,6 +223,59 @@ async function apiRemoveCartFromUser(req, res, next) {
     } catch (err) {}
 }
 
+async function apiPaypalPayment(req, res, next) {
+    const {
+        productName,
+        productDescription
+    } = req.body;
+    try {
+        const productInfo = await getProductInfoByName(productName);    
+        const url = await createOrder(productName, productDescription, productInfo[0].product_price, 'PHP');
+
+        res.status(200).json({
+            status: 200,
+            message: "Paypal Payment",
+            data: url
+        });
+    } catch (err) {}
+}
+
+async function apiCapturePayment(req, res, next) {
+    try {
+        await capturePayment(req.query.token);
+
+        await addOrderToUser(req.user.name, req.query.productName);
+        await removeCartFromUser(req.user.name, req.query.productName);
+        
+        res.redirect(process.env.BASE_URL + '/in/account/account.html#order_status');
+    } catch (err) {}
+}
+
+async function apiGetOrdersFromUser(req, res, next) {
+    try {
+        const result = await getOrdersFromUser(req.user.name);
+        res.status(200).json({
+            status: 200,
+            message: "Success get orders!",
+            data: result
+        });
+    } catch (err) {}
+}
+
+async function apiRemoveOrderFromUser(req, res, next) {
+    const {
+        productName
+    } = req.body;
+    try {
+        const result = await removeOrderFromUser(req.user.name, productName);
+        res.status(200).json({
+            status: 200,
+            message: "Success order remove!",
+            data: result
+        });
+    } catch (err) {}
+}
+
 module.exports = {
     apiLogin,
     apiSignup,
@@ -227,5 +287,9 @@ module.exports = {
     apiAddToCart,
     apiGetProductInfoByName,
     apiGetCartsFromUser,
-    apiRemoveCartFromUser
+    apiRemoveCartFromUser,
+    apiPaypalPayment,
+    apiCapturePayment,
+    apiGetOrdersFromUser,
+    apiRemoveOrderFromUser
 };
