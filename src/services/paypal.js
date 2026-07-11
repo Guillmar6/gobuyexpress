@@ -16,7 +16,7 @@ async function generatePaypalAccessToken() {
 }
 
 async function createOrder(productName, productDescription, productPrice, currencyCode) {console.log('paypalStart');
-    const accessToken = await generatePaypalAccessToken();
+    const accessToken = await generatePaypalAccessToken();console.log('paypalGenerateToken');
 
     const response = await axios({
         url: process.env.PAYPAL_BASE_URL + '/v2/checkout/orders',
