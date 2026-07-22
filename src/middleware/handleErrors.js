@@ -2,7 +2,7 @@ function errorHandler(err, req, res, next) {
     console.log(err.stack);
     res.status(500).json({
         status: 500,
-        message: 'Something went wrong',
+        message: `Something went wrong: ${err.stack}`,
         error: err.stack
     });
 }
