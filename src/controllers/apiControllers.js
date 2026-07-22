@@ -237,7 +237,9 @@ async function apiPaypalPayment(req, res, next) {
             message: "Paypal Payment",
             data: url
         });
-    } catch (err) {}
+    } catch (err) {
+        console.log(err.stack)
+    }
 }
 
 async function apiCapturePayment(req, res, next) {
