@@ -167,7 +167,9 @@ async function apiChange_password(req, res, next) {
             message: "Change password successfully!",
             data: null
         });
-    } catch(err) {}
+    } catch(err) {
+        console.log(err.stack);
+    }
 }
 
 async function apiAddToCart(req, res, next) {
@@ -181,7 +183,9 @@ async function apiAddToCart(req, res, next) {
             message: "Add to cart success.",
             data: null
         });
-    } catch (err) {}
+    } catch (err) {
+        console.log(err.stack);
+    }
 }
 
 async function apiGetProductInfoByName(req, res, next) {
@@ -195,7 +199,9 @@ async function apiGetProductInfoByName(req, res, next) {
             message: "Success get info!",
             data: result[0]
         });
-    } catch (err) {}
+    } catch (err) {
+        console.log(err.stack);
+    }
 }
 
 async function apiGetCartsFromUser(req, res, next) {
@@ -206,7 +212,9 @@ async function apiGetCartsFromUser(req, res, next) {
             message: "Success get carts!",
             data: result
         });
-    } catch (err) {}
+    } catch (err) {
+        console.log(err.stack);
+    }
 }
 
 async function apiRemoveCartFromUser(req, res, next) {
@@ -220,7 +228,9 @@ async function apiRemoveCartFromUser(req, res, next) {
             message: "Success cart remove!",
             data: result
         });
-    } catch (err) {}
+    } catch (err) {
+        console.log(err.stack);
+    }
 }
 
 async function apiPaypalPayment(req, res, next) {
@@ -238,7 +248,7 @@ async function apiPaypalPayment(req, res, next) {
             data: url
         });
     } catch (err) {
-        console.log(err.stack)
+        console.log(err.stack);
     }
 }
 
