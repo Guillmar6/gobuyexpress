@@ -80,6 +80,11 @@ async function loadHtml() {
   productDescription.forEach((pDescription, index) => {
     pDescription.textContent = info.descriptions[index];
   });
+
+  const productPriceTag  = document.querySelectorAll("#container #priceTag");
+  productPriceTag.forEach((pTag, index) => {
+    pTag.textContent = `₱${info.product_price[index]}`;
+  });
 }
 
 const addToCartBtn = document.querySelector('#container');

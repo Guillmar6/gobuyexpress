@@ -2,6 +2,7 @@
   <div id="productChild">
     <img id="imageSrc" src="" alt="Product Image">
     <span>Description</span>
+    <p id="priceTag">PriceTag</p>
     <p id="productName" hidden></p>
     <p id="productType" hidden></p>
     <p id="productDescription" hidden></p>
@@ -62,6 +63,7 @@
     height: fit-content;
     font-size: 12px;
     white-space: pre-line;
+    flex: 1;
   }
 
   #addToCartContainer {
@@ -82,5 +84,9 @@
 
   #productContainer:hover #addToCartBtn {
     transform: translateY(0);
+  }
+
+  #priceTag {
+    color: #551A8B;
   }
 </style>

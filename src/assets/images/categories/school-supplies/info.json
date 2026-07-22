@@ -9,5 +9,9 @@
     ],
     "types": [
         "school-supplies"
+    ],
+    "product_price": [
+        "35",
+        "50"
     ]
 }

@@ -9,5 +9,9 @@
     ],
     "types": [
         "gadgets"
+    ],
+    "product_price": [
+        "250",
+        "200"
     ]
 }

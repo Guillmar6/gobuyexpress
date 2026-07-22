@@ -9,5 +9,9 @@
     ],
     "types": [
         "furnitures"
+    ],
+    "product_price": [
+        "450",
+        "300"
     ]
 }
