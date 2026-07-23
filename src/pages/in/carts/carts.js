@@ -1,3 +1,5 @@
+document.querySelectorAll('img').forEach(img => img.loading = 'lazy');
+
 loadNavigation();
 
 async function loadNavigation() {

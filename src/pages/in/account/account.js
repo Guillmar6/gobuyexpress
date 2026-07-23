@@ -1,3 +1,5 @@
+document.querySelectorAll('img').forEach(img => img.loading = 'lazy');
+
 const menuOne = document.getElementById("profilePageChild");
 const menuTwo = document.getElementById("addressPageChild");
 const menuThree = document.getElementById("change_passwordPageChild");
