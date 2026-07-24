@@ -7,10 +7,10 @@ async function getUserByName(name) {
     );
     return result.rows;
 }
-async function createUser(name, password) {
+async function createUser(name, password, email, phone_number, address, birthday) {
     const result = await pool.query(
-        "INSERT INTO users(name, password) VALUES($1, $2) RETURNING *",
-        [name, password]
+        "INSERT INTO users(name, password, email, phone_number, address, birthday) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+        [name, password, email, phone_number, address, birthday]
     );
     return result.rows;
 }

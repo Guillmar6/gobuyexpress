@@ -58,14 +58,21 @@ async function apiLogin(req, res, next) {
     }
 }
 async function apiSignup(req, res, next) {
-    const { name, password } = req.body;
+    const { 
+        name, 
+        password,
+        email,
+        phone_number,
+        address,
+        birthday
+     } = req.body;
     try {
         const userExist = await getUserByName(name);
         if(userExist.length !== 0) return res.status(400).redirect('/login?signup_message=Username+already+exists');
         
-        const user = await createUser(name, password);
-        generateToken(res, user[0]);
-        res.status(200).redirect('/in/home/home.html');
+        const user = await createUser(name, password, email, phone_number, address, birthday);
+        // generateToken(res, user[0]);
+        res.status(200).redirect('/login?login_message=Created+successfully!');
     } catch(err) {
         res.status(400).redirect('/login');
     }
@@ -113,7 +120,7 @@ async function apiUpdateProfile(req, res, next) {
         res.status(200).json({
             status: 200,
             message: "Update successfully.",
-            data: data
+            data: null
         });
     } catch(err) {
         console.log(`Error: ${err.stack}`);
